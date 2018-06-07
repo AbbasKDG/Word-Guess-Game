@@ -4,12 +4,10 @@
 		<title>
 			Hangman
 		</title>
+		
 	</head>
 	<body>
-		API error: <!-- Rule out the already guessed -->
-		 <!--Word Guess Game-->
-		 <!--Title-->
-		 <!--Print Title and Instructions-->
+		
 
 		<header>
 			<h1>
@@ -82,18 +80,25 @@
 		};
 	}
 	//MAIN function - KEY FUNCTION
-	//form array of ruledout+wordblanks
-	//alreadyguessed.push(ruledout)
-	//alreadyguessed.push(wordblanks)
-	// if letter!==alreadyguessed loop 
-	//QED
+	
 	function key(letter) {
 		incr = 0;
+		ignore=[];
 		for (var a = 0; a < 26; a++) { //alphabet check
 			if (alphabet[a] === letter) {
 				console.log(letter + " is an alphabet") //alphabet confirmed
 				console.log(word);
+				ignore.push(ruledout);
+				ignore.push(wordblanks);
+				console.log(ignore);
 				//validate(letter, word, wordblanks);
+			/*for(x=0;x<ignore.length;x++;)
+			  if(letter!==ignore){
+				  */
+
+
+				
+
 				for (var r = 0; r < 26; r++) {
 					if (letter == word[r]) {
 						wordblanks[r] = letter;
@@ -106,10 +111,12 @@
 							Wins++
 							round = Wins + 1
 							document.getElementById("win").innerHTML = Wins
-							alert("YOU WON")
-							alert("The ANSWER was " + word)
-							alert("Round " + round)
-							initialize();
+							setTimeout(function(){ alert("YOU WON");
+							alert("The ANSWER was " + word);
+							alert("Round " + round); initialize() }, 500);
+							
+							
+							
 						}
 						//
 						/////////////////////////////////////////////////////////////
@@ -123,16 +130,17 @@
 							document.getElementById("rulout").innerHTML = ruledout;
 							
 							if (chance < 1) {
-								alert("YOU LOST THIS ONE")
-								alert("The ANSWER was " + word)
-								alert("START FROM SCRATCH")
-								location.reload(); // RELOAD GAME
+								setTimeout(function(){ alert("YOU LOST THIS ONE");
+								alert("The ANSWER was " + word);
+								alert("START FROM SCRATCH");
+								location.reload() }, 500);
+								 // RELOAD GAME
 							}
 						}
 						   
 					}
 				}
-			}
+			} 
 		}
 	}
 	document.onkeyup = function START(event) {
